@@ -1,0 +1,10 @@
+{
+  "name": "ortc",
+  "version": "0.0.1",
+  "authors": [
+    "gaspard <gaspard@gmail.com>"
+  ],
+  "description": "an ortc test run",
+  "main": "app.js",
+  "license": "MIT"
+}
