@@ -10,3 +10,28 @@ a {
 #log {
   font-family: monospace;
 }
+
+nav.tools > div {
+  float:left;
+  width: 100px;
+}
+nav.tools > div a {
+  display:block;
+  text-align: center;
+  width: 90px;
+  padding: 7px 0;
+  background-color: #eee
+}
+
+.gui {
+  clear:both;
+  margin: 10px;
+  padding: 50px;
+}
+
+#local {
+  width: 160px;
+  height: 120px;
+  background-color: #dbdbdb;
+  border: 1px solid #bfbfbf;
+}
