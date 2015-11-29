@@ -14,22 +14,49 @@ iceOptions.iceservers = [
   {url: 'turn:52.28.254.183'} // videodesk
 ];
 var iceOptions = { "gatherPolicy": "all", "iceServers": [{ "urls": "turn:turn-testdrive.cloudapp.net:3478?transport=udp", "username": "redmond", "credential": "redmond123" }] };
-var iceGathr = new RTCIceGatherer(iceOptions);
 
-iceTr = new RTCIceTransport();
-dtlsTr = new RTCDtlsTransport(iceTr);
+var iceGathr = null;
+var iceTr = null;
+var dtlsTr = null;
+var candidates = [];
 
-iceGathr.onlocalcandidate = function(ev) {
-  for (var can in ev.candidate) {
-    if (ev.candidate.hasOwnProperty(can)) {
-      log('\n>' + can + ': ' + ev.candidate[can]);
+var ice = {
+  init: function () {
+    console.log('ice.init');
+    iceGathr = new RTCIceGatherer(iceOptions);
+
+    iceTr = new RTCIceTransport();
+    dtlsTr = new RTCDtlsTransport(iceTr);
+    iceGathr.onlocalcandidate = function(ev) {
+      ice.candidates.push(ev.candidate);
+    };
+  },
+  candidates: [],
+  negociate: function () {
+    console.log('ice.negociate');
+    // entering negociation mode
+    iceGathr.onlocalcandidate = function(ev) {
+      for (var can in ev.candidate) {
+        if (ev.candidate.hasOwnProperty(can)) {
+          console.log('\n>' + can + ': ' + ev.candidate[can]);
+        }
+      }
+      log('candidate negociated');
+      socket.emit('candidate', ev.candidate);
+    };
+
+  },
+  send: function () {
+    console.log('ice.send');
+    for (var i = 0; i < ice.candidates.length; i++) {
+      socket.emit('candidate', ice.candidates[i]);
+      log('candidate sent');
     }
   }
-  console.log('candidate sent');
-  socket.emit('candidate', {'candidate': ev.candidate});
 };
 
-socket.on('candidate', function (remote) {
-  console.log('got remote candidate', remote.candidate);
-  iceTr.addRemoteCandidate(remote.candidate);
+
+socket.on('candidate', function (candidate) {
+  log('candidate received');
+  iceTr.addRemoteCandidate(candidate);
 });
