@@ -8,7 +8,7 @@ var gum = function () {
       }
   }).then(function (stream) {
     console.log(stream);
-    window.stream = stream;
+    window.stream.local = stream;
     var video = document.getElementById('local');
     video.srcObject = stream;
   }).catch(function (error) {
