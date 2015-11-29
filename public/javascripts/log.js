@@ -6,5 +6,5 @@ var log = function () {
       $('#log').append(div);
     }
   }
-  console.log(arguments);
+  else console.log(arguments);
 };

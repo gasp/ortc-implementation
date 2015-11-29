@@ -20,5 +20,11 @@ module.exports = function (io) {
     });
 
     console.log('connected');
+
+    socket.on('candidate', function (candidate) {
+      console.log(candidate);
+      socket.broadcast.emit('candidate', candidate);
+    });
+
   });
 };
