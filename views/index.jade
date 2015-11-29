@@ -8,7 +8,7 @@ block content
     div
       a#ice_init(href='#ice_init') ice_init
     div
-      a#ice_negociate(href='#ice_negociate') ice_negociate
+      a#ice_negociate(href='#ice_negociate') ice_nego
     div
       a#ice_send(href='#ice_send') ice_send
     div
@@ -16,8 +16,10 @@ block content
     div
       a#start(href='#start') start
   div.gui
-    div
-      video(id='local',autoplay)
+    div.local
+      video(id='local', autoplay, muted)
+    div.remote
+      video(id='remote', autoplay)
 
   div#log
     div loaded
