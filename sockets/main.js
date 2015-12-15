@@ -26,5 +26,9 @@ module.exports = function (io) {
       socket.broadcast.emit('candidate', candidate);
     });
 
+    socket.on('capabilities', function (capabilities) {
+      console.log(capabilities);
+      socket.broadcast.emit('capabilities', capabilities);
+    });
   });
 };

@@ -20,7 +20,7 @@ $(function () {
     return false;
   });
   $('#start').on('click', function (ev) {
-    start();
+    stream.start();
     ev.stopPropagation();
     return false;
   });
