@@ -57,6 +57,12 @@ var ice = {
 
 
 socket.on('candidate', function (candidate) {
+  if (iceTr === null) {
+    log('error: Some candidates has been received' +
+      'but we are unable to process them as we are not in a negociate phase');
+    alert('Unable to add remote candidate');
+    return;
+  }
   log('candidate received');
   iceTr.addRemoteCandidate(candidate);
 });
