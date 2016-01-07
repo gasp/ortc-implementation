@@ -17,7 +17,6 @@ var iceOptions = { "gatherPolicy": "all", "iceServers": [{ "urls": "turn:turn-te
 
 var iceGathr = null;
 var iceTr = null;
-var dtlsTr = null;
 var candidates = [];
 
 var ice = {
@@ -26,7 +25,6 @@ var ice = {
     iceGathr = new RTCIceGatherer(iceOptions);
 
     iceTr = new RTCIceTransport();
-    dtlsTr = new RTCDtlsTransport(iceTr);
     iceGathr.onlocalcandidate = function(ev) {
       ice.candidates.push(ev.candidate);
     };

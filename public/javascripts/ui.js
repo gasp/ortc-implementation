@@ -14,6 +14,11 @@ $(function () {
     ev.stopPropagation();
     return false;
   });
+  $('#transport').on('click', function (ev) {
+    transport.init();
+    ev.stopPropagation();
+    return false;
+  });
   $('#gum').on('click', function (ev) {
     gum();
     ev.stopPropagation();
