@@ -24,7 +24,7 @@ $(function () {
     ev.stopPropagation();
     return false;
   });
-  $('#start').on('click', function (ev) {
+  $('#stream').on('click', function (ev) {
     stream.start();
     ev.stopPropagation();
     return false;

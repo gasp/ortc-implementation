@@ -10,6 +10,7 @@ var audioReceiver = null;
 var videoReceiver = null;
 
 stream.start = function () {
+  console.log('stream.start');
   var audioTrack = stream.local.getAudioTracks()[0];
   var videoTrack = stream.local.getVideoTracks()[0];
   console.log('got local video stream', videoTrack);
