@@ -21,7 +21,12 @@ nav.tools > div a {
   text-align: center;
   width: 90px;
   padding: 7px 0;
-  background-color: #eee
+  background-color: #eee;
+}
+
+nav.tools > div a.green {
+  color: #fff;
+  background-color: #458b00;
 }
 
 .gui {
