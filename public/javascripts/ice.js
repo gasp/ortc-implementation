@@ -20,12 +20,18 @@ var iceTr = null;
 var candidates = [];
 
 var ice = {
-  init: function () {
+  init: function (cb) {
     console.log('ice.init');
     iceGathr = new RTCIceGatherer(iceOptions);
 
     iceTr = new RTCIceTransport();
     iceGathr.onlocalcandidate = function(ev) {
+      if (JSON.stringify(ev.candidate) === '{}') {
+        if (typeof(cb) === 'function') {
+          cb();
+        }
+      }
+      console.log(ev.candidate);
       ice.candidates.push(ev.candidate);
     };
   },

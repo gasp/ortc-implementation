@@ -1,11 +1,18 @@
 $(function () {
-  green = function (el) {
+  var green = function (el) {
     $(el).addClass('green');
   };
+  var orange = function (el) {
+    $(el).addClass('orange');
+  };
   $('#ice_init').on('click', function (ev) {
-    ice.init();
+    var that = this;
+    ice.init(function () {
+      console.log('done');
+      green(that);
+    });
     ev.stopPropagation();
-    green(this);
+    orange(that);
     return false;
   });
   $('#ice_negociate').on('click', function (ev) {
